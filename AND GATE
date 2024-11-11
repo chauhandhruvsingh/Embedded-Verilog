@@ -1,0 +1,97 @@
+AND GATE
+
+//Program_1_and_gate
+module and_gate;
+   
+  reg  a;
+  reg  b;
+  wire y,;  
+ 
+  assign y = a & b;
+
+initial
+begin
+a = 0; b = 1;
+//#10
+$display("a=%b b=%b y=%b", a, b, y);
+$finish;
+end
+ 
+endmodule // example_and_gate
+
+
+//Program_2_and_gate
+module and_gate_1;
+reg a, b; 
+wire z; 
+
+and my_and(z, a, b);
+
+initial
+begin
+	a = 0; b =1;
+	#10
+	$display("a= %b	b= %b z= %b", a, b, z);
+	$finish;
+end
+endmodule
+
+//Program 3 
+//AND
+   module andGate;
+    	reg x;   // Inputx
+    	reg y;   // Inputy
+    	wire z;  // Outputz
+    	andComp uut (
+    		.x(x), 
+    		.y(y), 
+    		.z(z)
+    	);
+     initial begin  // Initialize Inputs
+    	x = 0;
+    	y = 0;
+                  #20 x = 1;
+    	#20 y = 1;
+    	#20 x = 0;	
+    	//#20 x = 1;	  
+    	//#40;
+        end 
+ initial begin
+				 $display("INPUT\tOUTPUT");
+$monitor("x=%d,y=%d,z=%d \n",x,y,z);
+    end
+     endmodule
+    module andComp(
+        input x,
+        input y,
+        output z
+        );
+    assign z = x&y;
+    endmodule
+
+
+#Program_4_and_gate
+module and_gate_1;
+reg a, b; 
+wire z, temp; 
+
+assign temp = b;
+and my_and(z, a, temp);
+always @(a or b)
+begin
+$display("a= %b b= %b z= %b", a, b, z);
+end
+initial
+begin
+a = 0; b = 0;
+#10
+a = 0; b = 1;
+#10
+a = 1; b = 0;
+#10
+a = 1; b = 1;
+
+end
+endmodule
+
+
