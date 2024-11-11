@@ -1,0 +1,46 @@
+TESTBENCH
+// Testbench for AND Gate
+module andGate_tb;
+    reg x;   // Input x for testing
+    reg y;   // Input y for testing
+    wire z;  // Output z, connected to the AND gate output
+
+    // Instantiate the design module
+    andComp uut (
+        .x(x), 
+        .y(y), 
+        .z(z)
+    );
+
+    // Initial block to simulate input signals
+    initial begin
+        // Initialize inputs and apply test cases
+        x = 0;
+        y = 0;
+        #2 x = 1;
+        #2 y = 1;
+        #2 x = 0;   
+        #20 x = 1;   
+        #40; // Wait before ending the test
+    end  
+
+    // Initial block to output waveform and monitor values
+    initial begin
+        $dumpfile("andGate.vcd");   // Specify the file for waveform output
+        $dumpvars(0, andGate_tb);    // Dump variables from the testbench
+        $display("INPUT\tOUTPUT");   // Display header for monitor output
+        $monitor("x=%b, y=%b, z=%b \n", x, y, z); // Monitor changes in x, y, z
+    end
+endmodule
+
+
+DESIGN 
+
+// Design: AND Gate Module
+module andComp(
+    input x,
+    input y,
+    output z
+);
+    assign z = x & y; // Perform the AND operation
+endmodule
